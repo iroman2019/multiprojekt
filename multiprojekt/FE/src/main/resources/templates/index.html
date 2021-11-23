@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="succes" class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+<div id="error" class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+<div th:text="${year}">
+
+</div>
+
+<div class="container-fluid">
+    <p>Alkalmazkodó szélességű .container rész, amely kitölti a vízszintesen rendelkezésre álló helyet.</p>
+    <form action="#" th:action="@{/admessage}" method="post" th:object="${messages}">
+
+        <label>Név:</label><input type="text" th:field="*{name}">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        <label>Üzenet:</label><input type="text" th:field="*{message}">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></div>
+        <button type="submit" class="btn btn-primary">Mentés</button>
+    </form>
+</div>
+<div class="container-fluid">
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <td colspan="2" text-align="center"><h2>Hirdetések</h2></td>
+    </tr>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Message</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Mark</td>
+        <td>Ez itt a reklán helye :-)</td>
+    </tr>
+    <tr>
+        <td>Jacob</td>
+        <td>Nagyon klasssszzzzzzzzzzz</td>
+    </tr>
+
+    </tbody>
+</table>
+</div>
+<script src="js/custom.js"></script>
+
+</body>
+</html>
