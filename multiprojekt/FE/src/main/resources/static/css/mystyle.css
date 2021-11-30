@@ -1,0 +1,15 @@
+.table thead th{
+    background-color: #9fddd9;
+}
+.btn-primary {
+    background-color: #127484 ;
+    border-color: #127484 ;
+    padding:initial;
+    width:80px;
+
+}
+.btn-primary:hover {
+    background-color: #127470;
+    border-color: #127470 ;
+    padding:initial;
+}
