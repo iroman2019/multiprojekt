@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: multiprojekt
+data:
+  application.yml: |
+    spring:
+      data:
+        cassandra:
+          keyspace-name: ildikoder
+          contact-points: cassandra.ildidemo
+          local-datacenter: datacenter1
+          password: cassandra
+          username: cassandra
+          port: 9042
+          schema-action: CREATE_IF_NOT_EXISTS
+      kafka:
+        consumer:
+          bootstrap-servers: 'kaffka-kafka:9092'
+          group-id: group_id
+          auto-offset-reset: earliest
+          key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+          value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        producer:
+          bootstrap-servers: 'kaffka-kafka:9092'
+          key-serializer: org.apache.kafka.common.serialization.StringSerializer
+          value-serializer: org.apache.kafka.common.serialization.StringSerializer
