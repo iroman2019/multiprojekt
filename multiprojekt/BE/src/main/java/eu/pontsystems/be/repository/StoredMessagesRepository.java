@@ -5,10 +5,9 @@ import org.springframework.data.cassandra.repository.AllowFiltering;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 
 import java.util.List;
-import java.util.UUID;
 
 
-public interface StoredMessagesRepository extends CassandraRepository<StoredMessages, UUID> {
+public interface StoredMessagesRepository extends CassandraRepository<StoredMessages, String> {
     @AllowFiltering
     List<StoredMessages> findByPublished(boolean published);
 

@@ -1,6 +1,5 @@
 package eu.pontsystems.be.services;
 
-import com.datastax.driver.core.utils.UUIDs;
 import eu.pontsystems.be.model.StoredMessages;
 import eu.pontsystems.be.repository.StoredMessagesRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +9,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 
 @CrossOrigin(origins = "http://localhost:8081")
 @Service
@@ -21,7 +22,6 @@ public class StoredMessagesService {
 
     public List<StoredMessages> getAllStoredMessages(String name) {
             List<StoredMessages> messages = new ArrayList<StoredMessages>();
-
 
             if (name == null)
                 storedMessagesRepository.findAll().forEach(messages::add);
@@ -36,23 +36,12 @@ public class StoredMessagesService {
     }
 
 
-//    public Optional<StoredMessages> getStoredMessageById(UUID id, StoredMessagesRepository storedMessagesRepository) {
-//        Optional<StoredMessages> messageData = storedMessagesRepository.findById(id);
-//
-//        if (messageData.isPresent()) {
-//            return messageData;
-//        } else {
-//            return null;
-//        }
-//    }
-
-
     public void createStoredMessage(StoredMessages message){
         try {
-            StoredMessages _messages = storedMessagesRepository.save(new StoredMessages(UUIDs.timeBased(), message.getName(), message.getMessage(), false));
+           StoredMessages _messages = storedMessagesRepository.save(new StoredMessages(UUID.randomUUID().toString(), message.getName(), message.getMessage(), false));
 
         } catch (Exception e) {
-            System.out.println("Hiba lett a beírásnál "+ e.getMessage());
+            log.error("Hiba lett a beírásnál "+ e.getMessage());
         }
     }
 

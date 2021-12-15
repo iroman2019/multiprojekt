@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
-import java.util.UUID;
-
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,7 +13,7 @@ import java.util.UUID;
 @Table
 public class StoredMessages {
     @PrimaryKey
-    private UUID id;
+    private String id;
 
     private String name;
     private String message;

@@ -1,15 +1,16 @@
 package eu.pontsystems.be;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 
+@Slf4j
 @SpringBootApplication(scanBasePackages = "eu.pontsystems.be")
 public class BeApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BeApplication.class, args);
-       // log.info("Spring Boot and Kafka application is started successfully.");
+        log.info("Spring Boot Cassandra modul is started successfully.");
     }
 
 }

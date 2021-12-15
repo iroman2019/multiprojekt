@@ -13,3 +13,29 @@
     border-color: #127470 ;
     padding:initial;
 }
+table.dataTable thead th, table.dataTable tfoot th{
+    background-color: #9fddd9 !important;
+}
+
+table.dataTable thead th, table.dataTable thead td{
+    border-bottom: 0.1px solid #444;
+}
+#succes {
+    background-color: #dff5f4;
+}
+
+.container-fluid{
+    margin-bottom: 50px;
+}
+
+input[type=search] {
+    border-width: 1px !important;
+}
+
+table.dataTable thead .sorting_asc {
+    background-image: url("../images/sort_asc.png")
+}
+
+table.dataTable thead .sorting_desc {
+    background-image: url("../images/sort_desc.png")
+}

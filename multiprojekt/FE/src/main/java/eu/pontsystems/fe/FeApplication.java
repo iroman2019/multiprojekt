@@ -12,7 +12,7 @@ public class FeApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(FeApplication.class, args);
-        log.info("Spring Boot and Kafka application is started successfully.");
+        log.info("Spring Boot Kafka modul is started successfully.");
     }
 
 }

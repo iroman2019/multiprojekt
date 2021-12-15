@@ -1,0 +1,57 @@
+version: '2'
+
+services:
+  cassandra1:
+    container_name: cassandra1
+    image: docker.io/bitnami/cassandra:4.0
+    ports:
+      - '7000:7000'
+      - '9042:9042'
+    volumes:
+      - 'cassandra_data1:/bitnami'
+    environment:
+      - CASSANDRA_SEEDS=cassandra
+      - CASSANDRA_PASSWORD_SEEDER=yes
+      - CASSANDRA_PASSWORD=cassandra
+      - CASSANDRA_HOST=cassandra1
+    networks:
+      - app-tier
+
+  kafka1:
+    container_name: kafka1
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper1:2181'
+    image: wurstmeister/kafka
+    ports:
+      - '9092:9092'
+    depends_on:
+      - zookeeper1
+    networks:
+      - app-tier
+  zookeeper1:
+    container_name: zookeeper1
+    image: wurstmeister/zookeeper
+    ports:
+      - '2181:2181'
+    networks:
+      - app-tier
+
+  app:
+    container_name: app1
+    image: asd:1.0
+    ports:
+      - '8080:8080'
+    depends_on:
+      - cassandra1
+      - kafka1
+    networks:
+      - app-tier
+
+networks:
+  app-tier:
+    driver: bridge
+
+volumes:
+  cassandra_data1:
+    driver: local

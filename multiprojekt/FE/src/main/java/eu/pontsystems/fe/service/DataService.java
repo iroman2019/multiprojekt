@@ -8,6 +8,6 @@ import java.time.LocalDate;
 public class DataService {
     public int getNextYear() {
         LocalDate now = LocalDate.now();
-        return now.getYear() + 1;
+        return now.getYear();
     }
 }
