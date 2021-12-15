@@ -2,8 +2,8 @@
 <i>Springboot with Kafka and Cassandra</i>
 
 This is a spring boot application with two modules. <br>
-Fe module: This module is responsible for displaying the view and sending messages from the view to the Kafka topic. <br>
-BE module: This module reads data from the kafka topic and saves it in the cassandra database
+<b>Fe module</b>: This module is responsible for displaying the view and sending messages from the view to the Kafka topic. <br>
+<b>BE module</b>: This module reads data from the kafka topic and saves it in the cassandra database
 
 ## Kafka in local
 cd extras/kafka <br>
