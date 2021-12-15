@@ -1,18 +1,18 @@
 # multiprojekt
 <i>Springboot with Kafka and Cassandra</i>
 
-This is a spring boot application with two modules. 
-Fe module: This module is responsible for displaying the view and sending messages from the view to the Kafka topic.
+This is a spring boot application with two modules. <br>
+Fe module: This module is responsible for displaying the view and sending messages from the view to the Kafka topic. <br>
 BE module: This module reads data from the kafka topic and saves it in the cassandra database
 
 ## Kafka in local
-cd extras/kafka
+cd extras/kafka <br>
 docker-compose up
 
-After that the docker containers start, in Kafka CLI:
-cd cd opt/kafka/bin/
+After that the docker containers start, in Kafka CLI: <br>
+cd opt/kafka/bin/
 
-Create the topic:
+Create the topic: <br>
 kafka-topics.sh --create --zookeeper zookeeper:2181 --topic messages --partitions 1 --replication-factor 1
 
 After that you can start the app and see the result on http://localhost:8080/.
