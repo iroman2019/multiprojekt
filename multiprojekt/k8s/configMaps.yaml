@@ -4,6 +4,10 @@ metadata:
   name: multiprojekt
 data:
   application.yml: |
+    logging:
+      level:
+        eu:
+          pontsystems: DEBUG
     spring:
       data:
         cassandra:

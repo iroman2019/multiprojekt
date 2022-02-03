@@ -28,10 +28,29 @@ Finally I use helm charts to deploy these programs.
 ### Deploying Kafka on Kubernetes with helm chart
 kubectl create namespace ildidemo <br>
 helm repo add bitnami https://charts.bitnami.com/bitnami <br>
-helm install kaffka --namespace ildidemo bitnami/kafka
+
+helm install kaffka --namespace ildidemo --set persistence.enabled=false,zookeeper.enabled=false,externalZookeeper.servers=zookeeper bitnami/kafka
+helm install zookeeper --namespace ildidemo --set persistence.enabled=false bitnami/zookeeper
+
+--On the kafka shell you can create the topic (name: messages):
+cd opt/bitnami/kafka/bin/<br>
+kafka-topics.sh --create --zookeeper zookeeper:2181 --topic messages --partitions 1 --replication-factor 1 (in local)<br>
+kafka-topics.sh --create --topic messages --bootstrap-server kaffka-kafka:9092 (on rancher)<br>
 
 ### Deploying Cassandra on Kubernetes with helm chart
-helm install cassandra --namespace ildidemo --set dbUser.password=cassandra,cluster.datacenter=datacenter1 bitnami/cassandra
+helm install cassandra --namespace ildidemo --set dbUser.password=cassandra,cluster.datacenter=datacenter1,persistence.storageClass=longhorn-no-replica bitnami/cassandra
+
+--On the cassandra shell you can create the table of messages:
+cqlsh -u cassandra -p cassandra<br>
+create keyspace ildikoder with replication={'class':'SimpleStrategy', 'replication_factor':1};<br>
+use ildikoder;<br>
+CREATE TABLE storedmessages(
+                 id text PRIMARY KEY,
+                 name text,
+                 message text,
+                 published boolean
+                 );<br>
+
 
 ### Deploying Springboot application on Kubernetes (I used Rancher to Kubernetes)
 <p/>
